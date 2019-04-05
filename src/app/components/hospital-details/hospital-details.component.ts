@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { faUpload, faTrash, faPlusCircle, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { Room } from 'src/app/models/room';
 
 @Component({
   selector: 'app-hospital-details',
@@ -7,6 +9,8 @@ import { faUpload, faTrash, faPlusCircle, faPencilAlt } from '@fortawesome/free-
   styleUrls: ['./hospital-details.component.scss']
 })
 export class HospitalDetailsComponent implements OnInit {
+
+  detailsForm: FormGroup;
 
   uploadIcon = faUpload;
   deleteIcon = faTrash;
@@ -33,9 +37,40 @@ export class HospitalDetailsComponent implements OnInit {
     { imageUrl: '../../../assets/accreditation.png', status: 'active', name: 'Name of accreditation'},
     { imageUrl: '../../../assets/accreditation.png', status: 'active', name: 'Long name of accreditation'}
   ]
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {    
+    this.detailsForm = this.fb.group({
+      email: [null, Validators.required],
+      contactNumbers: this.fb.array([]),
+      fax :[],
+      website: [null, Validators.required],
+      highlights: [null, Validators.required],
+      description: [null, Validators.required],
+      currency: [null, Validators.required],
+      rooms: this.fb.array([]),
+      meals: this.fb.array([])
+    })
+  }
+
+  get contactNumbers(){
+    return this.detailsForm.get('contactNumbers') as FormArray;
+  }
+
+  addContact(contactNumber : string){
+    const contacts = this.detailsForm.controls.contactNumbers as FormArray;
+    contacts.push(this.fb.group({number: contactNumber}));
+  }
+
+  addRoom(name: string, price: number){
+    const rooms = this.detailsForm.controls.rooms as FormArray;
+    const room: Room = {name: name, pricePerNight:price};
+    rooms.push(this.fb.group({room: room}));
+  }
+
+  addMeal(meal:string){
+    const meals = this.detailsForm.controls.meals as FormArray;
+    meals.push(this.fb.group({meal: meal}));
   }
 
   deleteAccreditation(){
