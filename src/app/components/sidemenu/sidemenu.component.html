@@ -1,4 +1,4 @@
-<div class="container sidemenu h-100">
+<div class="container sidemenu h-100 pt-0 px-0">
   <div class="row justify-content-center">
     <div class="col-md-auto">
       <img [src]="companyLogo" alt="Health Tourism Industry Logo">
@@ -9,21 +9,21 @@
       <span></span>
     </div>
   </div>
-  <nav class="navbar no-gutter-left">
+  <nav class="navbar px-0">
     <nav class="nav flex-column w-100">
-      <a class="nav-link active links" href="#">
+      <a class="nav-link active links" routerLink="/">
         <fa-icon [icon]="listIcon"></fa-icon> General Information
       </a>
-      <a class="nav-link links" href="#">
+      <a class="nav-link links" routerLink="procedures">
         <fa-icon [icon]="syringeIcon"></fa-icon> Procedures
       </a>
-      <a class="nav-link links" href="#">
+      <a class="nav-link links" routerLink="doctors">
         <fa-icon [icon]="doctorIcon"></fa-icon> Doctors
       </a>
-      <a class="nav-link links" href="#">
+      <a class="nav-link links" routerLink="doctors">
         <fa-icon [icon]="commentIcon"></fa-icon> Chat Room
       </a>
-      <a class="nav-link links" href="#">
+      <a class="nav-link links" routerLink="doctors">
         <fa-icon [icon]="dollarIcon"></fa-icon> Bookings And Payments
       </a>
     </nav>

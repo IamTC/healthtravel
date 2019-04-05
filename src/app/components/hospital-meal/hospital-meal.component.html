@@ -1,0 +1,43 @@
+<div class="col pl-0">
+  <h5 class="mb-3 font-weight-bold">Meal types</h5>
+</div>
+<form [formGroup]="parentForm">
+  <div formArrayName="meals">
+    <div *ngFor="let meal of parentForm.controls.meals?.value; let numIndex = index" [formGroupName]="numIndex">
+      <div class="form-group row no-gutter-left justify-content-around">
+        <label for="meal" class="col-sm-2 col-form-label text-left no-gutter-left">Meal name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control-plaintext" id="meal">
+        </div>
+        <div class="col-sm-1 text-center link">
+          <div class="row">
+            <div class="col-sm-12">
+              <fa-icon [icon]="deleteIcon" class="mr-0"></fa-icon>
+            </div>
+          </div>
+          Delete
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row no-gutter-left justify-content-around">
+    <label for="meal" class="col-sm-2 col-form-label text-left no-gutter-left">Meal name</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control-plaintext" id="meal" #mealName>
+    </div>
+    <div class="col-sm-1 text-center link">
+      <div class="row">
+        <div class="col-sm-12">
+          <fa-icon [icon]="deleteIcon" class="mr-0"></fa-icon>
+        </div>
+      </div>
+      Delete
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 link" (click)="addMeal(mealName.value)">
+      <fa-icon [icon]="addIcon" class="addIcon fa-lg"></fa-icon>
+      Add new meal type
+    </div>
+  </div>
+</form>

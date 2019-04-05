@@ -3,3 +3,20 @@ input[type="text"] {
     border: 1px solid lightgray;
     border-radius: 6px;
 }
+
+.accreditation {
+    background-color: initial;
+    border: none;
+}
+
+fa-icon {
+    margin-right: 8px;
+}
+
+.addIcon {
+    color: #00AAAA;
+}
+
+.hasError {
+    background-color: #ef9494 !important;
+}

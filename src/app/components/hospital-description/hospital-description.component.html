@@ -1,0 +1,116 @@
+<div class="container pl-0 mb-5">
+    <form [formGroup]="parentForm">
+        <div class="col pl-0">
+            <h5 class="mb-3 font-weight-bold">Contacts and description</h5>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="email" class="form-control-plaintext" [ngClass]="{'hasError': parentForm.controls.email.dirty && parentForm.controls.email.errors}" id="email">
+            </div>
+        </div>
+        <div formArrayName="contactNumbers">
+            <div *ngFor="let contact of parentForm.controls.contactNumbers?.value; let i = index">
+                <ng-container [formGroupName]="i">
+                    <div class="form-group row">
+                        <label for="contactNumber" class="col-sm-3 col-form-label text-right">Contact Number</label>
+                        <div class="col-sm-7">
+                            <input type="text" formControlName="number" [ngClass]="{'hasError': contactNumbers.invalid }" class="form-control-plaintext" disabled>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card text-center accreditation">
+                                        <div class="card-body p-0 link" (click)="deleteNumber(i)">
+                                            <fa-icon [icon]='deleteIcon' class="fa-lg  mr-0"></fa-icon>
+                                            <p class="card-text">Delete</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="contactNumber" class="col-sm-3 col-form-label text-right">Contact Number</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" #number id="contactNumber">
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="card text-center accreditation">
+                            <div class="card-body p-0 link" (click)="addContact(number.value); number.value = ''">
+                                <fa-icon [icon]='addIcon' class="addIcon fa-lg  mr-0"></fa-icon>
+                                <p class="card-text">Add</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="fax" class="col-sm-3 col-form-label text-right">Fax</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="fax" class="form-control-plaintext" id="fax">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="url" class="col-sm-3 col-form-label text-right">Website URL</label>
+            <div class="col-sm-9">
+                <input type="text" formControlName="website" class="form-control-plaintext" id="url">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="highlight1" class="col-sm-3 col-form-label text-right">
+                <p>Highlight 1</p>
+                <p>(Max 100 characters)</p>
+            </label>
+
+            <div class="col-sm-9">
+                <textarea class="form-control" formControlName='highlight1' id="highlight1" rows="2" maxlength="100"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="highlight2" class="col-sm-3 col-form-label text-right">
+                <p>Highlight 2</p>
+                <p>(Max 100 characters)</p>
+            </label>
+
+            <div class="col-sm-9">
+                <textarea class="form-control" id="highlight2" rows="2" [maxLength]="100"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="highlight3" class="col-sm-3 col-form-label text-right">
+                <p>Highlight 3</p>
+                <p>(Max 100 characters)</p>
+            </label>
+
+            <div class="col-sm-9">
+                <textarea class="form-control" id="highlight3" rows="2" [maxLength]="100"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="desc" class="col-sm-3 col-form-label text-right">
+                <p>Description</p>
+                <p>(Max 300 characters)</p>
+            </label>
+
+            <div class="col-sm-9">
+                <textarea class="form-control" formControlName="description" id="desc" rows="3"
+                    [maxLength]="300"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="currency" class="col-sm-3 col-form-label text-right">Currency</label>
+            <div class="col-sm-9">
+                <select class="form-control">
+                    <option>$ dollars US</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>

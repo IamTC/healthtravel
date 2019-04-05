@@ -1,0 +1,27 @@
+<div class="col pl-0">
+    <h5 class="mb-3 font-weight-bold">Accreditations</h5>
+</div>
+<div class="row">
+    <ng-container *ngFor='let accr of accreditations; let accrIndex = index'>
+        <div class="col-sm-3">
+            <div class="card accreditation" [ngClass]="{'faded' : accr.status == 'pending'}">
+                <img class="card-img-top rounded" [src]='accr.imageUrl' alt="Card image cap">
+                <div class="card-body no-gutter-left">
+                    <h6 class="card-title mb-0">{{accr.name}}</h6>
+                    <span class="moderation" *ngIf="accr.status == 'pending'"> Accreditation on moderation</span>
+                    <button (click)="deleteAccreditation(accrIndex)" class="btn no-gutter-left link visible">
+                        <fa-icon [icon]="deleteIcon"></fa-icon> <span>Delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="col-sm-3">
+        <div class="card text-center accreditation pt-3" (click)="addAccreditation()">
+            <div class="card-body">
+                <fa-icon [icon]='addIcon' class="addIcon fa-3x"></fa-icon>
+                <p class="card-text">Add accreditation</p>
+            </div>
+        </div>
+    </div>
+</div>

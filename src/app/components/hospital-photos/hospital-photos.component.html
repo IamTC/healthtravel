@@ -1,0 +1,27 @@
+<div class="col pl-0">
+    <h5 class="mb-3 font-weight-bold">Hospital Photos</h5>
+</div>                        
+<div class="row mb-3">
+    <div *ngFor="let image of hospitalImages; let imageIndex = index" class="col-sm-2 hospital-image-container position-relative text-light">
+        <img [src]="image.imageUrl" class="hospital-image" alt="Hospital Image" class="hospital-image">
+        <div class="position-absolute h-100 w-100 overlay px-4 invisible" *ngIf="!image.isCover">
+            <span class="link"><fa-icon [icon]="notCover" class="fa-lg"></fa-icon> Cover</span>
+            <div class="w-100"></div>
+            <div (click)="deleteImage(imageIndex)" class="link">
+                <fa-icon [icon]="deleteIcon" class="fa-lg"></fa-icon> Delete
+            </div>
+        </div>
+        <div class="position-absolute h-100 w-100 cover px-4" *ngIf="image.isCover">
+            <fa-icon [icon]="cover" class="fa-lg "></fa-icon> Cover
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="card text-center pt-3">
+            <div class="card-body text-secondary p-2">
+                <fa-icon [icon]='uploadIcon' class="fa-lg"></fa-icon>
+                <p class="card-title">Upload photos</p>
+                <p class="card-text">You can upload {{10 - hospitalImages.length}} more photos</p>
+            </div>
+        </div>
+    </div>
+</div>

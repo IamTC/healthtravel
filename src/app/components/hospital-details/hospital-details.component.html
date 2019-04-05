@@ -4,7 +4,7 @@
             <div class="col-sm-auto">
                 <h3>{{hospitalName}}</h3>
             </div>
-            <div class="col mt-1 text-secondary">
+            <div class="col mt-1 text-secondary link">
                 <fa-icon [icon]="editIcon"></fa-icon>
                 Request to change
             </div>
@@ -13,7 +13,7 @@
             <div class="col-sm-auto">
                 <h5>{{hospitalAddress}}</h5>
             </div>
-            <div class="col mt-1 text-secondary">
+            <div class="col mt-1 text-secondary link">
                 <fa-icon [icon]="editIcon"></fa-icon>
                 Request to change
             </div>
@@ -22,268 +22,28 @@
 
         </div>
         <div class="container pl-0">
-            <div class="col pl-0">
-                <h5 class="mb-3 font-weight-bold">Hospital Photos</h5>
-            </div>
-            <div class="row mb-3">
-                <div *ngFor="let image of hospitalImages" class="col-sm-2 hospital-image-container">
-                    <img [src]="image" class="hospital-image" alt="Hospital Image" class="hospital-image">
-                </div>
-                <div class="col-sm-2">
-                    <div class="card text-center pt-3">
-                        <div class="card-body text-secondary p-2">
-                            <fa-icon [icon]='uploadIcon' class="fa-lg"></fa-icon>
-                            <p class="card-title">Upload photos</p>
-                            <p class="card-text">You can upload 2 more photos</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           <app-hospital-photos [hospitalImages]="hospitalImages"></app-hospital-photos>
         </div>
-        <div class="container pl-0 mb-5">
-            <div class="col pl-0">
-                <h5 class="mb-3 font-weight-bold">Contacts and description</h5>
-            </div>
-            <div class="form-group row">
-                <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
-                <div class="col-sm-9">
-                    <input type="text" formControlName="email" class="form-control-plaintext" id="email" required>
-                </div>
-            </div>
-            <div formArrayName="contactNumbers">
-                <div *ngFor="let contact of detailsForm.controls.contactNumbers?.value; let numIndex = index"
-                    [formGroupName]="numIndex">
-                    <div class="form-group row">
-                        <label for="contactNumber" class="col-sm-3 col-form-label text-right">Contact Number</label>
-                        <div class="col-sm-7">
-                            <input type="text" formControlName="number" class="form-control-plaintext"
-                                id="contactNumber" required disabled>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card text-center accreditation">
-                                        <div class="card-body p-0">
-                                            <fa-icon [icon]='deleteIcon' class="fa-lg  mr-0"></fa-icon>
-                                            <p class="card-text">Delete</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="contactNumber" class="col-sm-3 col-form-label text-right">Contact Number</label>
-                <div class="col-sm-7">
-                    <input type="text" class="form-control-plaintext" #number id="contactNumber" required>
-                </div>
-                <div class="col-sm-2">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card text-center accreditation">
-                                <div class="card-body p-0" (click)="addContact(number.values)">
-                                    <fa-icon [icon]='addIcon' class="addIcon fa-lg  mr-0"></fa-icon>
-                                    <p class="card-text">Add</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="fax" class="col-sm-3 col-form-label text-right">Fax</label>
-                <div class="col-sm-9">
-                    <input type="text" formControlName="fax" class="form-control-plaintext" id="fax">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="url" class="col-sm-3 col-form-label text-right">Website URL</label>
-                <div class="col-sm-9">
-                    <input type="text" formControlName="website" class="form-control-plaintext" id="url" required>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="highlight1" class="col-sm-3 col-form-label text-right">
-                    <p>Highlight 1</p>
-                    <p>(Max 100 characters)</p>
-                </label>
 
-                <div class="col-sm-9">
-                    <textarea class="form-control" id="highlight1" rows="2" maxlength="100" required></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="highlight2" class="col-sm-3 col-form-label text-right">
-                    <p>Highlight 2</p>
-                    <p>(Max 100 characters)</p>
-                </label>
+        <app-hospital-description [parentForm]="detailsForm" ></app-hospital-description>
 
-                <div class="col-sm-9">
-                    <textarea class="form-control" id="highlight2" rows="2" [maxLength]="100"></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="highlight3" class="col-sm-3 col-form-label text-right">
-                    <p>Highlight 3</p>
-                    <p>(Max 100 characters)</p>
-                </label>
-
-                <div class="col-sm-9">
-                    <textarea class="form-control" id="highlight3" rows="2" [maxLength]="100"></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="desc" class="col-sm-3 col-form-label text-right">
-                    <p>Description</p>
-                    <p>(Max 300 characters)</p>
-                </label>
-
-                <div class="col-sm-9">
-                    <textarea class="form-control" formControlName="description" id="desc" rows="3"
-                        [maxLength]="300"></textarea>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="currency" class="col-sm-3 col-form-label text-right">Currency</label>
-                <div class="col-sm-9">
-                    <select class="form-control" required>
-                        <option>$ dollars US</option>
-                    </select>
-                </div>
-            </div>
+        <div class="container pl-0 mb-5">            
+            <app-accreditation [accreditations]="accreditations" ></app-accreditation>            
         </div>
+        
         <div class="container pl-0 mb-5">
-            <div class="col pl-0">
-                <h5 class="mb-3 font-weight-bold">Accreditations</h5>
-            </div>
-            <div class="row">
-                <ng-container *ngFor='let accr of accreditations'>
-                    <div class="col-sm-3">
-                        <div class="card accreditation">
-                            <img class="card-img-top" [src]='accr.imageUrl' alt="Card image cap">
-                            <div class="card-body no-gutter-left">
-                                <h6 class="card-title">{{accr.name}}</h6>
-                                <button (click)="deleteAccreditation()" class="btn no-gutter-left">
-                                    <fa-icon [icon]="deleteIcon"></fa-icon> <span>Delete</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
-                <div class="col-sm-3">
-                    <div class="card text-center accreditation pt-3">
-                        <div class="card-body">
-                            <fa-icon [icon]='addIcon' class="addIcon fa-3x"></fa-icon>
-                            <p class="card-text">Add accreditation</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-hospital-room [parentForm]="detailsForm"></app-hospital-room>
         </div>
-        <div class="container pl-0 mb-5">
-            <div class="col pl-0">
-                <h5 class="mb-3 font-weight-bold">Room types</h5>
-            </div>
-            <div formArrayName="rooms">
-                <div *ngFor="let contact of detailsForm.controls.rooms?.value; let numIndex = index"
-                    [formGroupName]="numIndex">
-                    <div class="form-group row no-gutter-left justify-content-around">
-                        <label for="room" class="col-sm-1 col-form-label text-left no-gutter-left">Room</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control-plaintext" id="room">
-                        </div>
-                        <label for="room" class="col-sm-2 col-form-label text-left">Price per night</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control-plaintext" id="room">
-                        </div>
-                        <div class="col-sm-1 text-center">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <fa-icon [icon]="deleteIcon" class="mr-0"></fa-icon>
-                                </div>
-                            </div>
-                            Delete
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row no-gutter-left justify-content-around">
-                <label for="room" class="col-sm-1 col-form-label text-left no-gutter-left">Room</label>
-                <div class="col-sm-4">
-                    <input type="text" class="form-control-plaintext" id="room" #roomName>
-                </div>
-                <label for="room" class="col-sm-2 col-form-label text-left">Price per night</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control-plaintext" id="room" #roomPrice>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <fa-icon [icon]="deleteIcon" class="mr-0"></fa-icon>
-                        </div>
-                    </div>
-                    Delete
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" (click)="addRoom(roomName.value,roomPrice.value)">
-                    <fa-icon [icon]="addIcon" class="addIcon fa-lg"></fa-icon>
-                    Add new room type
-                </div>
-            </div>
-        </div>
-        <div class="container pl-0 mb-5">
-            <div class="col pl-0">
-                <h5 class="mb-3 font-weight-bold">Meal types</h5>
-            </div>
-            <div formArrayName="meals">
-                    <div *ngFor="let meal of detailsForm.controls.meals?.value; let numIndex = index"
-                        [formGroupName]="numIndex">
-                        <div class="form-group row no-gutter-left justify-content-around">
-                                <label for="meal" class="col-sm-2 col-form-label text-left no-gutter-left">Meal name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control-plaintext" id="meal">
-                                </div>
-                                <div class="col-sm-1 text-center">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <fa-icon [icon]="deleteIcon" class="mr-0"></fa-icon>
-                                        </div>
-                                    </div>
-                                    Delete
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            <div class="form-group row no-gutter-left justify-content-around">
-                <label for="meal" class="col-sm-2 col-form-label text-left no-gutter-left">Meal name</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control-plaintext" id="meal" #mealName>
-                </div>
-                <div class="col-sm-1 text-center">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <fa-icon [icon]="deleteIcon" class="mr-0"></fa-icon>
-                        </div>
-                    </div>
-                    Delete
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" (click)="addMeal(mealName.value)">
-                    <fa-icon [icon]="addIcon" class="addIcon fa-lg"></fa-icon>
-                    Add new meal type
-                </div>
-            </div>
+        <div class="container pl-0 mb-3">
+            <app-hospital-meal [parentForm]="detailsForm"></app-hospital-meal>            
         </div>
         <div class="container">
             <div class="row text-right">
                 <div class="col-sm-12">
-                    <button type="submit" class='btn-primary'>Save</button>
+                    <button type="submit" [disabled]="detailsForm.invalid" class='btn btn-primary btn-sm'>Save</button>
                 </div>
             </div>
-        </div>
+        </div>        
     </form>
+    {{findInvalidControls()}}
 </div>

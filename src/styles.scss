@@ -8,7 +8,30 @@ html, body {
     height: 100%;
 }
 
+.accreditation {
+    background-color: initial !important;
+    border: none !important;
+}
+
+input[type="text"] {
+    background-color: white !important;
+    border: 1px solid lightgray !important;
+    border-radius: 6px !important;
+}
+
+fa-icon {
+    margin-right: 8px !important;
+}
+
+.addIcon {
+    color: #00AAAA !important;
+}
+
 .no-gutter-left {
     padding-left: 0 !important;
     margin-left: 0 !important;
+}
+
+.link {
+    cursor: pointer;
 }
