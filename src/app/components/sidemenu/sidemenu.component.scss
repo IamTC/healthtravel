@@ -1,0 +1,23 @@
+.sidemenu {
+    padding: 20px 0;    
+}
+
+.links {
+    color: #83838f;
+    text-decoration: none;
+    padding-left: 2rem;
+    &:hover{
+        color: #646473;
+        font-weight: 500;
+    }    
+}
+
+.nav-link.active {    
+    font-weight: 900;
+    background-color: #f1fafa;
+    color: #209f9f;
+}
+
+fa-icon {
+    margin-right: .5rem;
+}

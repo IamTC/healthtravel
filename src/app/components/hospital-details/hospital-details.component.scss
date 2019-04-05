@@ -1,0 +1,33 @@
+.hospital-details{
+    padding: 1.5rem 7rem;
+    background-color: #f3f7fa;
+}
+
+.hospital-image-container {
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+    img{
+        border-radius: 6px;
+    }
+    .hospital-image{
+        max-width: 100%;
+    }
+}
+input[type="text"] {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+}
+
+.accreditation {
+    background-color: initial;
+    border: none;
+}
+
+fa-icon {
+    margin-right: 8px;
+}
+
+.addIcon {
+    color: #00AAAA;
+}
