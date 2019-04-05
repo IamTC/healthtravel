@@ -1,14 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
+import { HospitalDetailsComponent } from './components/hospital-details/hospital-details.component';
+import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HospitalDetailsComponent,
+    SidemenuComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

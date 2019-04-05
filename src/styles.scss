@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+html, body {
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 11.42px;
+    width: 100%;
+    height: 100%;
+}
+
+.no-gutter-left {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
